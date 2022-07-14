@@ -1,10 +1,10 @@
-#mage Gallery Application
+# Image Gallery Application
 
-Creating an image gallery app using a popular in-demand and powerful React library known as "MVC" (Model, View, Controller) Library.
+### Creating an image gallery app using a popular in-demand and powerful React library known as "MVC" (Model, View, Controller) Library.
 
-This app is built in the style of modern single-page applications.
+#### This app is built in the style of modern single-page applications.
 
-###Features:
+## Features:
 JSX 
 Flickr API
 React
