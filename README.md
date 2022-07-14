@@ -5,15 +5,15 @@
 #### This app is built in the style of modern single-page applications.
 
 ## Features:
-JSX 
-Flickr API
-React
-Create React App 
-React Router modules
-State components 
-Reusable stateless components
-Fetch API / axios
-Handle the search
+- JSX 
+- lickr API
+- React
+- Create React App 
+- React Router modules
+- State components 
+- Reusable stateless components
+- Fetch API / axios
+- Handle the search
 
 ---
 
