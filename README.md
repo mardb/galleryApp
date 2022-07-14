@@ -6,14 +6,13 @@ Creating an image gallery app using a popular in-demand and powerful React libra
 
 ## Features:
 - JSX 
-- lickr API
 - React
 - Create React App 
-- React Router modules
+- React Router
+- Fetch API / axios
+- Flickr API
 - State components 
 - Reusable stateless components
-- Fetch API / axios
-- Handle the search
 
 ---
 
