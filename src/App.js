@@ -1,13 +1,17 @@
 import './App.css';
+import React, { Component } from 'react';
+import axios from 'axios';
+//components
 import Search from './components/Search';
 import NavBar from './components/NavBar';
 import NotFound from './components/NotFound';
-import React, { Component } from 'react';
 import apiKey from './components/config';
-import axios from 'axios';
+import secret from './components/config'
 import GifList from './components/GifList';
 
 const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=cats&per_page=24&format=json&nojsoncallback=1`;
+
+
 
 export default class App extends Component {
   constructor() {
@@ -21,7 +25,7 @@ export default class App extends Component {
     axios
       .get(url)
       .then((response) => {
-        console.log(response.data.photos.photo);
+        console.log(response.data);
         this.setState({
           gifs: response.data.photos.photo,
         });
@@ -32,7 +36,7 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(this.state.gifs);
+    // console.log(this.state.gifs);
     return (
       <div className="App">
         <div className="container">

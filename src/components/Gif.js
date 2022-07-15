@@ -2,8 +2,7 @@ import React from 'react';
 
 const Gif = props => (
   <li>
-  <img
-    src="https://farm5.staticflickr.com/4334/37032996241_4c16a9b530.jpg"
+ <img src={props.url} 
     alt=""
   />
 </li>
