@@ -2,15 +2,12 @@ import './App.css';
 import React, { Component } from 'react';
 import axios from 'axios';
 //components
-import Search from './components/Search';
+import SearchForm from './components/SearchForm';
 import NavBar from './components/NavBar';
-import NotFound from './components/NotFound';
 import apiKey from './components/config';
-import secret from './components/config'
 import GifList from './components/GifList';
-
-const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=cats&per_page=24&format=json&nojsoncallback=1`;
-
+// import NotFound from './components/NotFound';
+// import secret from './components/config'
 
 
 export default class App extends Component {
@@ -18,21 +15,28 @@ export default class App extends Component {
     super();
     this.state = {
       gifs: [],
+      loading: true,
     };
   }
 
   componentDidMount() {
+    this.performSearch()
+  }
+ 
+
+  performSearch = (query='yorkie') => {
     axios
-      .get(url)
-      .then((response) => {
-        console.log(response.data);
-        this.setState({
-          gifs: response.data.photos.photo,
-        });
-      })
-      .catch((error) => {
-        console.log('Error fetching and parsing fetch data', error);
+    .get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
+    .then((response) => {
+      // console.log(response.data);
+      this.setState({
+        gifs: response.data.photos.photo,
+        loading: false
       });
+    })
+    .catch((error) => {
+      console.log('Error fetching and parsing fetch data', error);
+    });
   }
 
   render() {
@@ -40,21 +44,22 @@ export default class App extends Component {
     return (
       <div className="App">
         <div className="container">
-          <Search />
+          <SearchForm onSearch={this.performSearch}/>
 
           <NavBar />
-          {/* photo container */}
-          <div className="photo-container">
-            <h2>Results</h2>
-
-            <GifList data={this.state.gifs} />
+        
+            {
+              (this.state.loading)
+              ? <p> Loading...</p>
+              : <GifList data={this.state.gifs} />
+            }
+            
 
             {/* <!-- Not Found --> */}
             {/* <li className="not-found"></li> */}
-          </div>
+          {/* </div> */}
           {/* <PhotoContainer /> */}
 
-          <NotFound />
         </div>{' '}
       </div>
     );
