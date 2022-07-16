@@ -1,13 +1,17 @@
 import './App.css';
 import React, { Component } from 'react';
 import axios from 'axios';
-import { BrowserRouter, Route } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+} from 'react-router-dom';
 //components
 import SearchForm from './components/SearchForm';
 import NavBar from './components/NavBar';
 import apiKey from './components/config';
 import GifList from './components/GifList';
-// import NotFound from './components/NotFound';
+import NotFound from './components/NotFound';
 // import secret from './components/config'
 
 export default class App extends Component {
@@ -15,6 +19,8 @@ export default class App extends Component {
     super();
     this.state = {
       gifs: [],
+      query: '',
+      history: '',
       loading: true,
     };
   }
@@ -32,6 +38,7 @@ export default class App extends Component {
         // console.log(response.data);
         this.setState({
           gifs: response.data.photos.photo,
+          query: query,
           loading: false,
         });
       })
@@ -45,27 +52,37 @@ export default class App extends Component {
 
     return (
       <BrowserRouter>
-        <div className="App">
-          <div className="container">
-            <SearchForm onSearch={this.performSearch} />
+        <div className="container">
+          <SearchForm onSearch={this.performSearch} />
 
-            <NavBar />
+          <NavBar />
 
-            {this.state.loading ? (
-              <p> Loading...</p>
-            ) : (
-              <GifList data={this.state.gifs} />
-            )}
+          {this.state.loading ? (
+            <p> Loading...</p>
+          ) : (
+            <GifList data={this.state.gifs} />
+          )}
 
-            {/* <!-- Not Found --> */}
-            {/* <li className="not-found"></li> */}
-            {/* </div> */}
-            {/* <PhotoContainer /> */}
-  
-            <Route exact path="/" render={() => <GifList /> }/>  
-            {/* <Route path="/nav" render={() => <NavBar/> }/> */}
+          {/* <!-- Not Found --> */}
+          {/* <li className="not-found"></li> */}
+          {/* </div> */}
+          {/* <PhotoContainer /> */}
+          <Routes>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <GifList
+                  data={this.state.gifs}
+                  title={this.state.query}
+                  query={this.state.query}
+                />
+              )}
+            />
+            <Route path="/nav" render={() => <NavBar />} />
             <Route path="/search" render={() => <SearchForm />} />
-          </div>
+            <Route path="/notfound" render={() => <NotFound />} />
+          </Routes>
         </div>
       </BrowserRouter>
     );
