@@ -15,6 +15,9 @@ export default class SearchForm extends Component{
     e.preventDefault();
     this.props.onSearch(this.query.value)
     e.currentTarget.reset()
+    e.currentTarget.reset();
+    let path =`/${this.state.searchText}`;
+    this.props.history.push(path);
   }
 
   render(){
@@ -26,7 +29,7 @@ export default class SearchForm extends Component{
   onChange={this.onSearchChange}
   name="search" 
   ref={(input) => this.query = input}
-  placeholder="Search..." 
+  placeholder="Search" 
   required/>
   <button type="submit" 
   className="search-button">
