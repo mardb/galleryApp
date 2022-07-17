@@ -26,9 +26,9 @@ export default class App extends Component {
 
   componentDidMount() {
     this.performSearch();
-    this.performSearch('cats');
-    this.performSearch('dogs');
-    this.performSearch('computers');
+    // this.performSearch('cats');
+    // this.performSearch('dogs');
+    // this.performSearch('computers');
   }
 
   performSearch = (query = 'yorkie') => {
@@ -112,7 +112,17 @@ export default class App extends Component {
                   query={this.state.query}
                 />
               }
-            />
+            /><Route
+            exact
+            path="/computer"
+            element={
+              <GifList
+                data={this.state.computer}
+                title={this.state.query}
+                query={this.state.query}
+              />
+            }
+          />
             <Route
               exact
               path="/computers"
@@ -140,7 +150,7 @@ export default class App extends Component {
           {/* </div> */}
           {/* <PhotoContainer /> */}
           <Routes>
-            <Route
+            {/* <Route
               exact
               path="/"
               element={
@@ -150,8 +160,8 @@ export default class App extends Component {
                   query={this.state.query}
                 />
               }
-            />
-            <Route
+            /> */}
+            {/* <Route
          
               path="/cats"
               
@@ -162,8 +172,8 @@ export default class App extends Component {
                   query={this.state.query}
                 />
               }
-            />
-            <Route
+            /> */}
+            {/* <Route
           
               path="/dogs"
               element={
@@ -173,8 +183,8 @@ export default class App extends Component {
                   query={this.state.query}
                 />
               }
-            />
-            <Route
+            /> */}
+            {/* <Route
               
               path="/computers"
               element={
@@ -184,8 +194,8 @@ export default class App extends Component {
                   query={this.state.query}
                 />
               }
-            />
-             <Route path="/:query" render={<GifList results={this.state.photos} title={this.state.query}/> } />
+            /> */}
+             {/* <Route path="/:query" render={<GifList results={this.state.photos} title={this.state.query}/> } /> */}
             {/* <Route path="/cats" element={dogs} />
             <Route path="/dogs" element={cats} />
             <Route path="/computers" element={computers} /> */}

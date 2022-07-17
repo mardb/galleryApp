@@ -5,7 +5,7 @@ import NotFound from './NotFound';
 const GifList = (props) => {
   const results = props.data;
   let gifs;
-  if (results.length > 0) {
+  if (results) {
     gifs = results.map((gif) => (
       <Gif
         key={gif.id}
