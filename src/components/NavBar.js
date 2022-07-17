@@ -1,8 +1,7 @@
 import React from 'react'
-import { 
-  // Route, 
-  NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
+//sets up the navigation links/routes for the existing buttons 
 const NavBar = () => (
 <nav className="main-nav">
         <ul>
@@ -11,7 +10,7 @@ const NavBar = () => (
           <li><NavLink to='/computers'>Computers</NavLink></li>
         </ul>
       </nav>
-      // routes
+
 )
 
 export default NavBar;

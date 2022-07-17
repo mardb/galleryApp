@@ -4,19 +4,20 @@ export default class SearchForm extends Component{
   state = {
     searchText:''
   }
-
+//sets state of the search, value = query
   onSearchChange = (e) =>{
     this.setState({searchText: e.target.value})
   }
-
+//on submit or enter button 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.onSearch(this.query.value)
-    e.currentTarget.reset();
-    let query = this.state.searchText
-    let path =`/search/${query}`;
-    // this.props.history.push(path);
+    e.stopPropagation();
+//updates state in APP and calls the API 
+    this.props.onSearch(this.state.searchText)
+  //updates the route names when entering query on search
+    this.props.navigate(this.state.searchText)
 
+    e.currentTarget.reset();
   }
 
   render(){
